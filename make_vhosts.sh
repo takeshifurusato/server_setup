@@ -2,9 +2,9 @@
 
 #-------------------------------------------------------------------------------------------------------------
 # parameters
-export OPE_USER_NAME='opeuser'
-export HOSTFQDN='wordpress.kensho.mobi'
-export HOSTDOMAIN='wordpress.kensho.mobi'
+export OPE_USER_NAME='username'
+export HOSTFQDN='hostfqdn'
+export HOSTDOMAIN='hostdomain'
 
 
 #-------------------------------------------------------------------------------------------------------------
