@@ -6,7 +6,6 @@ none
 
 none
 
-
 ## Usage
 
 1. wget https://github.com/takeshifurusato/server_setup/archive/master.zip

@@ -3,12 +3,16 @@
 #-------------------------------------------------------------------------------------------------------------
 # parameters
 export OPE_USER_NAME='username'
+export PWD_MYSQL='mysqlpass'
 export HOSTFQDN='hostfqdn'
 export HOSTDOMAIN='hostdomain'
 
+export DB_NAME='dbname'
+export DB_USER='dbuser'
+export DB_PASS='dbpass'
 
 #-------------------------------------------------------------------------------------------------------------
-echo "make documentroot directory"
+# make documentroot directory
 # /var/www/www.exsample.com/htdocs
 # /var/www/www.exsample.com/logs
 mkdir /var/www/${HOSTFQDN}/
@@ -17,7 +21,7 @@ mkdir /var/www/${HOSTFQDN}/logs
 chown -R ${OPE_USER_NAME}:apache /var/www/${HOSTFQDN}/
 
 #-------------------------------------------------------------------------------------------------------------
-echo "make virtual host"
+# make virtual host
 cat << _EOT_ > /etc/httpd/conf.d/${HOSTFQDN}.conf
 <VirtualHost *:80>
     ServerAdmin webmaster@${HOSTDOMAIN}
@@ -37,7 +41,16 @@ _EOT_
 echo ${HOSTFQDN} > /var/www/${HOSTFQDN}/htdocs/index.html
 
 #-------------------------------------------------------------------------------------------------------------
-echo "service httpd graceful"
+# make database
+mysql -uroot -p${PWD_MYSQL} << '_EOT_'
+ CREATE DATABASE ${DB_NAME};
+ CREATE USER '${DB_USER}'@'localhost' IDENTIFIED BY '${DB_PASS}';
+ GRANT ALL PRIVILEGES ON ${DB_NAME}.* TO '${DB_USER}'@'localhost';
+ FLUSH PRIVILEGES;
+_EOT_
+
+#-------------------------------------------------------------------------------------------------------------
+# service httpd graceful
 service httpd graceful
 
 
