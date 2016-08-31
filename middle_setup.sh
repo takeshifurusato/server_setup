@@ -1,14 +1,8 @@
 ﻿#!/bin/sh
 
 #-------------------------------------------------------------------------------------------------------------
-# parameters
-
-
-
-#-------------------------------------------------------------------------------------------------------------
 ### apache install & settings
 yum -y install httpd httpd-devel mod_ssl
-chkconfig httpd on
 
 # Security log option
 sed -i.orig /etc/httpd/conf/httpd.conf \
@@ -16,6 +10,7 @@ sed -i.orig /etc/httpd/conf/httpd.conf \
  -e '/^DirectoryIndex /s/ .*/ index.php index.cgi index.html/' \
  -e '/^ServerSignature /s/ .*/ Off/' \
  -e '/^#AddHandler cgi-script /s/^#//' \
+ -e '/^#NameVirtualHost *:80 /s/^#//' \
  -e '/<Directory \"\/var\/www\/html\">/,/<\/Directory>/s/AllowOverride None/AllowOverride ALL/' 
 
 cat << '_EOT_' > /etc/httpd/conf.d/option.conf
@@ -52,6 +47,10 @@ cat << '_EOT_' > /etc/logrotate.d/httpd
     endscript
 }
 _EOT_
+
+# service start
+chkconfig httpd on
+service httpd start
 
 #-------------------------------------------------------------------------------------------------------------
 ### PHP instarll & settings
@@ -106,5 +105,5 @@ chkconfig mysqld on
 service mysqld start
 
 #set password
-/usr/bin/mysqladmin -u root password "${PWD_MYSQL}"
+/usr/bin/mysqladmin -uroot password "${PWD_MYSQL}"
 
