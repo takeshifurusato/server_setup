@@ -1,4 +1,4 @@
-﻿#!/bin/sh
+#!/bin/sh
 
 #-------------------------------------------------------------------------------------------------------------
 # parameters
@@ -8,7 +8,7 @@ export HOSTDOMAIN='wordpress.kensho.mobi'
 
 
 #-------------------------------------------------------------------------------------------------------------
-# make documentroot directory
+echo "make documentroot directory"
 # /var/www/www.exsample.com/htdocs
 # /var/www/www.exsample.com/logs
 mkdir /var/www/${HOSTFQDN}/
@@ -17,7 +17,7 @@ mkdir /var/www/${HOSTFQDN}/logs
 chown -R ${OPE_USER_NAME}:apache /var/www/${HOSTFQDN}/
 
 #-------------------------------------------------------------------------------------------------------------
-# make virtual host
+echo "make virtual host"
 cat << _EOT_ > /etc/httpd/conf.d/${HOSTFQDN}.conf
 <VirtualHost *:80>
     ServerAdmin webmaster@${HOSTDOMAIN}
@@ -36,6 +36,8 @@ _EOT_
 
 echo ${HOSTFQDN} > /var/www/${HOSTFQDN}/htdocs/index.html
 
+#-------------------------------------------------------------------------------------------------------------
+echo "service httpd graceful"
 service httpd graceful
 
 

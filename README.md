@@ -1,4 +1,4 @@
-﻿# ServerSetup
+# ServerSetup
 
 none
 
@@ -14,9 +14,12 @@ none
 3. unzip master.zip
 4. cd server_setup-master
 
-5. Edit parameters section of "server_init.sh" 
-6. Edit parameters section of "make_vhosts.sh"
+5. vi server_init.sh
+Edit parameters section of "server_init.sh" 
+6. vi make_vhosts.sh
+Edit parameters section of "make_vhosts.sh"
 
+7. chmod +x ./*.sh
 8. ./server_init.sh
 9. ./make_vhosts.sh
 10. ./selinux_off.sh

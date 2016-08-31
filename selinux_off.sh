@@ -1,4 +1,4 @@
-﻿#!/bin/sh
+#!/bin/sh
 
 #■SELINUX off
 sed -i.orig '/^SELINUX=/s/=.*/=disabled/' /etc/selinux/config
