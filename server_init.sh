@@ -9,8 +9,8 @@ export PWD_MYSQL='mysqlpass'
 
 #-------------------------------------------------------------------------------------------------------------
 # security_setup & useradd
-security_setup.sh
+./security_setup.sh
 
 #-------------------------------------------------------------------------------------------------------------
 # apache,mysql,php setup
-middle_setup.sh
+./middle_setup.sh

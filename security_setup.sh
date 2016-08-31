@@ -30,4 +30,4 @@ _EOT_
 # add operation user
 useradd ${OPE_USER_NAME}
 echo "${OPE_USER_PASS}"  | passwd --stdin ${OPE_USER_NAME}
-usermod -a -G apache ${OPE_USER_NAME}
+

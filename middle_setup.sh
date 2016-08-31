@@ -61,6 +61,9 @@ _EOT_
 chkconfig httpd on
 service httpd start
 
+# add apache group operation user
+usermod -a -G apache ${OPE_USER_NAME}
+
 #-------------------------------------------------------------------------------------------------------------
 ### PHP instarll & settings
 yum -y install php php-devel php-mbstring gd gd-devel php-gd ImageMagick*
