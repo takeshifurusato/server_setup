@@ -34,6 +34,8 @@ cat << _EOT_ > /etc/httpd/conf.d/${HOSTFQDN}.conf
 </VirtualHost>
 _EOT_
 
+echo ${HOSTFQDN} > /var/www/${HOSTFQDN}/htdocs/index.html
+
 service httpd graceful
 
 
