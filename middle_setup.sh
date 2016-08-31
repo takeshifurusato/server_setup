@@ -1,6 +1,15 @@
 ﻿#!/bin/sh
 
 #-------------------------------------------------------------------------------------------------------------
+# yum Package UPDATE
+yum -y update
+yum -y install expect sudo openssh-clients
+
+# yum auto update 
+yum -y install yum-cron
+chkconfig yum-cron on
+
+#-------------------------------------------------------------------------------------------------------------
 ### apache install & settings
 yum -y install httpd httpd-devel mod_ssl
 

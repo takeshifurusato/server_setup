@@ -26,16 +26,6 @@ cat << '_EOT_' > /etc/sysconfig/iptables
 COMMIT
 _EOT_
 
-
-#-------------------------------------------------------------------------------------------------------------
-# yum Package UPDATE
-yum -y update
-yum -y install expect sudo openssh-clients
-
-# yum auto update 
-yum -y install yum-cron
-chkconfig yum-cron on
-
 #-------------------------------------------------------------------------------------------------------------
 # add operation user
 useradd ${OPE_USER_NAME}
