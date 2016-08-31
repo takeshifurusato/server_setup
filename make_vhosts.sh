@@ -42,7 +42,7 @@ echo ${HOSTFQDN} > /var/www/${HOSTFQDN}/htdocs/index.html
 
 #-------------------------------------------------------------------------------------------------------------
 # make database
-mysql -uroot -p${PWD_MYSQL} << '_EOT_'
+mysql -uroot -p${PWD_MYSQL} << _EOT_
  CREATE DATABASE ${DB_NAME};
  CREATE USER '${DB_USER}'@'localhost' IDENTIFIED BY '${DB_PASS}';
  GRANT ALL PRIVILEGES ON ${DB_NAME}.* TO '${DB_USER}'@'localhost';
