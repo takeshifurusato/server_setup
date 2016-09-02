@@ -34,6 +34,8 @@ Make vHosts
 
 1. get script.
 
+    wget https://raw.githubusercontent.com/takeshifurusato/server_setup/master/make_vhosts.sh
+    
 2. settings
 
     export OPE_USER_NAME='username'
