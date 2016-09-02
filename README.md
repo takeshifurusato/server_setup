@@ -14,7 +14,7 @@ Server Initialize
 
 1. get script.
 
-    wget https://raw.githubusercontent.com/takeshifurusato/server_setup/master/server_init.sh
+    curl https://raw.githubusercontent.com/takeshifurusato/server_setup/master/server_init.sh > server_init.sh
 
 2. settings
 
@@ -34,7 +34,7 @@ Make vHosts
 
 1. get script.
 
-    wget https://raw.githubusercontent.com/takeshifurusato/server_setup/master/make_vhosts.sh
+    curl https://raw.githubusercontent.com/takeshifurusato/server_setup/master/make_vhosts.sh > make_vhosts.sh
     
 2. settings
 
