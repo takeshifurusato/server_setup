@@ -52,7 +52,7 @@ Make vHosts
 
 3. Run script.
 
-    sudo sh make_vhosts.sh
+    sh make_vhosts.sh
 
 ## Anything Else
 
