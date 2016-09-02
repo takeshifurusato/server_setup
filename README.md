@@ -18,12 +18,9 @@ Server Initialize
 
 2. settings
 
-    #-------------------------------------------------------------------------------------------------------------
-    # parameters
     export OPE_USER_NAME='username'
     export OPE_USER_PASS='userpass'
     export PWD_MYSQL='mysqlpass'
-    #-------------------------------------------------------------------------------------------------------------
 
 3. Run script.
 
@@ -37,12 +34,9 @@ Make vHosts
 
 2. settings
 
-    #-------------------------------------------------------------------------------------------------------------
-    # parameters
     export OPE_USER_NAME='username'
     export PWD_MYSQL='mysqlpass'
     export VHOST_FQDN='VHOST_FQDN'
-    
     export DB_NAME='dbname'
     export DB_USER='dbuser'
     export DB_PASS='dbpass'
