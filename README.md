@@ -8,49 +8,30 @@ none
 
 ## Usage
 
-Server Initialize
+### Server Initialize
 
-0. ssh -i ****** -lroot ***.***.***.***
-
-1. get script.
+    ssh -i ****** -lroot ***.***.***.***
 
     curl https://raw.githubusercontent.com/takeshifurusato/server_setup/master/server_init.sh > server_init.sh
 
-2. settings
-
     export OPE_USER_NAME='username'
-    
     export OPE_USER_PASS='userpass'
-    
     export PWD_MYSQL='mysqlpass'
-
-3. Run script.
 
     sh server_init.sh
 
-Make vHosts
+### Make vHosts
 
-0. ssh -lusername ***.***.***.***
-
-1. get script.
+    ssh -lusername ***.***.***.***
 
     curl https://raw.githubusercontent.com/takeshifurusato/server_setup/master/make_vhosts.sh > make_vhosts.sh
     
-2. settings
-
     export OPE_USER_NAME='username'
-    
     export PWD_MYSQL='mysqlpass'
-    
-    export VHOST_FQDN='VHOST_FQDN'
-    
+    export VHOST_FQDN='www.example.com'
     export DB_NAME='dbname'
-    
     export DB_USER='dbuser'
-    
     export DB_PASS='dbpass'
-
-3. Run script.
 
     sh make_vhosts.sh
 
