@@ -1,44 +1,24 @@
 #!/bin/sh
 
 #-------------------------------------------------------------------------------------------------------------
-# parameters
-export OPE_USER_NAME='username'
-export PWD_MYSQL='mysqlpass'
-export HOSTFQDN='hostfqdn'
-export HOSTDOMAIN='hostdomain'
-
-export DB_NAME='dbname'
-export DB_USER='dbuser'
-export DB_PASS='dbpass'
-
-#-------------------------------------------------------------------------------------------------------------
 # make documentroot directory
 # /var/www/www.exsample.com/htdocs
 # /var/www/www.exsample.com/logs
-mkdir /var/www/${HOSTFQDN}/
-mkdir /var/www/${HOSTFQDN}/htdocs
-mkdir /var/www/${HOSTFQDN}/logs
-chown -R ${OPE_USER_NAME}:apache /var/www/${HOSTFQDN}/
+mkdir -p /var/www/${VHOST_FQDN}/{htdocs,logs}
+chown -R ${OPE_USER_NAME}:apache /var/www/${VHOST_FQDN}/
 
 #-------------------------------------------------------------------------------------------------------------
 # make virtual host
-cat << _EOT_ > /etc/httpd/conf.d/${HOSTFQDN}.conf
+cat << _EOT_ > /etc/httpd/conf.d/${VHOST_FQDN}.conf
 <VirtualHost *:80>
-    ServerAdmin webmaster@${HOSTDOMAIN}
-    DocumentRoot /var/www/${HOSTFQDN}/htdocs
-    ServerName ${HOSTFQDN}
-    ErrorLog  /var/www/${HOSTFQDN}/logs/error_log
-    CustomLog  /var/www/${HOSTFQDN}/logs/access_log combined env=!nolog
-    <Directory  /var/www/${HOSTFQDN}/htdocs>
-        Options Includes ExecCGI FollowSymLinks
-        AllowOverride ALL
-        Order allow,deny
-        Allow from all
-    </Directory>
+    DocumentRoot /var/www/${VHOST_FQDN}/htdocs
+    ServerName ${VHOST_FQDN}
+    ErrorLog  /var/www/${VHOST_FQDN}/logs/error_log
+    CustomLog  /var/www/${VHOST_FQDN}/logs/access_log combined env=!nolog
 </VirtualHost>
 _EOT_
 
-echo ${HOSTFQDN} > /var/www/${HOSTFQDN}/htdocs/index.html
+echo ${VHOST_FQDN} > /var/www/${VHOST_FQDN}/htdocs/index.html
 
 #-------------------------------------------------------------------------------------------------------------
 # make database
@@ -50,7 +30,7 @@ mysql -uroot -p${PWD_MYSQL} << _EOT_
 _EOT_
 
 #-------------------------------------------------------------------------------------------------------------
-# service httpd graceful
-service httpd graceful
+# service httpd restart
+service httpd restart
 
 

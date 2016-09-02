@@ -8,20 +8,35 @@ none
 
 ## Usage
 
-1. wget https://github.com/takeshifurusato/server_setup/archive/master.zip
-2. yum -y install zip unzip
-3. unzip master.zip
-4. cd server_setup-master
+Server Initialize
+0. ssh -i ****** -lroot ***.***.***.***
+1. get script.
+    wget https://raw.githubusercontent.com/takeshifurusato/server_setup/master/server_init.sh
+2. settings
+    #-------------------------------------------------------------------------------------------------------------
+    # parameters
+    export OPE_USER_NAME='username'
+    export OPE_USER_PASS='userpass'
+    export PWD_MYSQL='mysqlpass'
+    #-------------------------------------------------------------------------------------------------------------
+3. Run script.
+    sh server_init.sh
 
-5. vi server_init.sh ****Edit parameters section.
-6. vi make_vhosts.sh ****Edit parameters section.
-
-7. chmod +x ./*.sh
-8. ./server_init.sh
-9. ./make_vhosts.sh
-10. ./selinux_off.sh
-reboot!!
-
+Make vHosts
+0. ssh -lusername ***.***.***.***
+1. get script.
+2. settings
+    #-------------------------------------------------------------------------------------------------------------
+    # parameters
+    export OPE_USER_NAME='username'
+    export PWD_MYSQL='mysqlpass'
+    export VHOST_FQDN='VHOST_FQDN'
+    
+    export DB_NAME='dbname'
+    export DB_USER='dbuser'
+    export DB_PASS='dbpass'
+3. Run script.
+    sh make_vhosts.sh
 
 ## Anything Else
 
