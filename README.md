@@ -49,7 +49,8 @@ Make vHosts
     export DB_PASS='dbpass'
 
 3. Run script.
-    sh make_vhosts.sh
+
+    sudo sh make_vhosts.sh
 
 ## Anything Else
 
