@@ -9,23 +9,34 @@ none
 ## Usage
 
 Server Initialize
+
 0. ssh -i ****** -lroot ***.***.***.***
+
 1. get script.
+
     wget https://raw.githubusercontent.com/takeshifurusato/server_setup/master/server_init.sh
+
 2. settings
+
     #-------------------------------------------------------------------------------------------------------------
     # parameters
     export OPE_USER_NAME='username'
     export OPE_USER_PASS='userpass'
     export PWD_MYSQL='mysqlpass'
     #-------------------------------------------------------------------------------------------------------------
+
 3. Run script.
+
     sh server_init.sh
 
 Make vHosts
+
 0. ssh -lusername ***.***.***.***
+
 1. get script.
+
 2. settings
+
     #-------------------------------------------------------------------------------------------------------------
     # parameters
     export OPE_USER_NAME='username'
@@ -35,6 +46,7 @@ Make vHosts
     export DB_NAME='dbname'
     export DB_USER='dbuser'
     export DB_PASS='dbpass'
+
 3. Run script.
     sh make_vhosts.sh
 
