@@ -13,7 +13,7 @@ sudo chown -R ${OPE_USER_NAME}:apache /var/www/${VHOST_FQDN}/
 
 #-------------------------------------------------------------------------------------------------------------
 # make virtual host
-cat << _EOT_ | sudo tee /etc/httpd/conf.d/aaaaaa.conf
+cat << _EOT_ | sudo tee /etc/httpd/conf.d/${VHOST_FQDN}.conf
 <VirtualHost *:80>
     DocumentRoot /var/www/${VHOST_FQDN}/htdocs
     ServerName ${VHOST_FQDN}
