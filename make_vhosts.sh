@@ -37,4 +37,18 @@ _EOT_
 # service httpd restart
 sudo service httpd restart
 
+wp core download --locale=ja --path=/var/www/${VHOST_FQDN}/htdocs
+wp core config --dbhost=${DB_HOST} --dbname=${DB_NAME} --dbuser=${DB_USER} --dbpass=${DB_PASS} --skip-check --path=/var/www/${VHOST_FQDN}/htdocs
+wp core install --url=${WP_URL} --title=${WP_TITLE} --admin_user=${WP_ADMIN} --admin_password=${WP_ADMIN_PWD} --admin_email=${WP_ADMIN_MAIL} --path=/var/www/${VHOST_FQDN}/htdocs
 
+for plugin in ${WP_INSTALL_PLUGINS[@]}
+do
+  wp plugin install $plugin  --activate --path=/var/www/${VHOST_FQDN}/htdocs
+done
+
+for plugin in ${WP_ACTIVATE_PLUGINS[@]}
+do
+  wp plugin activate $plugin  --path=/var/www/${VHOST_FQDN}/htdocs
+done
+
+wp theme install ${WP_THEME_URL} --activate --path=/var/www/${VHOST_FQDN}/htdocs
