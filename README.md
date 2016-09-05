@@ -12,6 +12,8 @@ none
 
     ssh -i ****** -lroot ***.***.***.***
 
+    curl https://raw.githubusercontent.com/takeshifurusato/server_setup/master/server_init.sh > host_config.sh
+    
     curl https://raw.githubusercontent.com/takeshifurusato/server_setup/master/server_init.sh > server_init.sh
 
     export OPE_USER_NAME='username'
