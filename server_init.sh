@@ -64,6 +64,12 @@ service httpd start
 yum -y install php php-mbstring gd php-gd ImageMagick*
 sed -i '/date.timezone =/s/^\;//;/date.timezone =/s/=.*/= Asia\/Tokyo/' /etc/php.ini
 
+#-------------------------------------------------------------------------------------------------------------
+### WP_CLI instarll & settings
+curl -O  https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
+chmod +x wp-cli.phar
+sudo mv wp-cli.phar /usr/local/bin/wp
+wp --info
 
 #-------------------------------------------------------------------------------------------------------------
 ### mysql insatall & settings
