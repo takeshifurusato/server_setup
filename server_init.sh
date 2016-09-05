@@ -41,7 +41,7 @@ sed -i.orig /etc/httpd/conf/httpd.conf \
  -e '/^ServerTokens /s/ .*/ Prod/' \
  -e '/^DirectoryIndex /s/ .*/ index.php index.cgi index.html/' \
  -e '/^ServerSignature /s/ .*/ Off/' \
- -e '/^#NameVirtualHost *:80 /s/^#//' \
+ -e '/^#NameVirtualHost /s/^#//' \
  -e '/<Directory \"\/var\/www\/html\">/,/<\/Directory>/s/AllowOverride None/AllowOverride ALL/' 
 
 # Log Rotation
