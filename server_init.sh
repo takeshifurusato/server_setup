@@ -121,15 +121,17 @@ echo "${OPE_USER_PASS}"  | passwd --stdin ${OPE_USER_NAME}
 # set password
 /usr/bin/mysqladmin -uroot password "${PWD_MYSQL}"
 # set sudoer
-# add apache group operation user
-usermod -a -G apache ${OPE_USER_NAME}
 cat << _EOT_ >> /etc/sudoers
 ${OPE_USER_NAME}     ALL=(ALL)     NOPASSWD: ALL
-
 _EOT_
+# add apache group operation user
+usermod -a -G apache ${OPE_USER_NAME}
+# move host_config.sh
+mv ./host_config.sh /home/${OPE_USER_NAME}/
+chown ${OPE_USER_NAME}:${OPE_USER_NAME} /home/${OPE_USER_NAME}/host_config.sh
 
 #-------------------------------------------------------------------------------------------------------------
-# 
+# remove server_init.sh
 rm -f server_init.sh
 
 #-------------------------------------------------------------------------------------------------------------
