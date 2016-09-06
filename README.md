@@ -21,8 +21,6 @@ none
 
     ssh -lusername ***.***.***.***
 
-    curl https://raw.githubusercontent.com/takeshifurusato/server_setup/master/host_config.sh > host_config.sh
-    vi host_config.sh
     curl https://raw.githubusercontent.com/takeshifurusato/server_setup/master/make_vhosts.sh > make_vhosts.sh
     sh make_vhosts.sh
 
