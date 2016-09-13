@@ -63,20 +63,17 @@ chkconfig httpd on
 service httpd start
 
 #-------------------------------------------------------------------------------------------------------------
-### PHP instarll & settings
-yum -y install php php-mbstring gd php-gd ImageMagick*
-sed -i '/date.timezone =/s/^\;//;/date.timezone =/s/=.*/= Asia\/Tokyo/' /etc/php.ini
-
-#-------------------------------------------------------------------------------------------------------------
-### WP_CLI instarll & settings
-curl -O  https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
-chmod +x wp-cli.phar
-sudo mv wp-cli.phar /usr/local/bin/wp
-wp --info
-
-#-------------------------------------------------------------------------------------------------------------
-### mysql insatall & settings
-yum -y install mysql mysql-server php-mysql 
+### MariaDB insatall & settings
+rpm --import https://yum.mariadb.org/RPM-GPG-KEY-MariaDB
+cat << '_EOT_' > /etc/yum.repos.d/mariadb.repo
+[mariadb]
+name = MariaDB
+baseurl = http://yum.mariadb.org/10.2/centos6-x86/
+gpgkey=https://yum.mariadb.org/RPM-GPG-KEY-MariaDB
+gpgcheck=1
+enabled=1
+_EOT_
+yum -y install MariaDB-server MariaDB-client
 
 # my.cnf setting
 cp -a /etc/my.cnf{,.orig}
@@ -101,7 +98,7 @@ pid-file=/var/run/mysqld/mysqld.pid
 default-character-set=utf8
 _EOT_
 
-service mysqld start
+service mysql start
 mysql -uroot << '_EOT_'
  DELETE FROM mysql.user WHERE User='';
  DELETE FROM mysql.user WHERE User='root' AND Host NOT IN ('localhost', '127.0.0.1', '::1');
@@ -112,7 +109,22 @@ _EOT_
 
 # mysql settings
 chkconfig mysqld on
-service mysqld start
+
+#-------------------------------------------------------------------------------------------------------------
+### PHP install & settings
+curl -O http://rpms.famillecollet.com/enterprise/remi-release-6.rpm
+curl -O http://ftp.jaist.ac.jp/pub/Linux/Fedora/epel/6/x86_64/epel-release-6-8.noarch.rpm
+rpm -ivh epel-release-6-8.noarch.rpm remi-release-6.rpm
+yum -y --enablerepo=remi,epel install php php-mysqlnd php-mbstring gd php-gd
+sed -i '/date.timezone =/s/^\;//;/date.timezone =/s/=.*/= Asia\/Tokyo/' /etc/php.ini
+yum -y install ImageMagick*
+
+#-------------------------------------------------------------------------------------------------------------
+### WP_CLI install & settings
+curl -O  https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
+chmod +x wp-cli.phar
+sudo mv wp-cli.phar /usr/local/bin/wp
+wp --info
 
 #-------------------------------------------------------------------------------------------------------------
 # add operation user
